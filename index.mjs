@@ -6,7 +6,7 @@ return new this ( setting );
 
 const $ = {};
 
-for ( const signature of [ 'setting', 'scenario', 'get', 'set' ] )
+for ( const signature of [ 'setting', 'scenario', 'construct', 'get', 'set' ] )
 $ [ signature ] = Symbol ( signature );
 
 const Story = function Story ( setting ) {
@@ -47,6 +47,12 @@ return typeof conflict === 'function' ? conflict ( ... order ) : conflict;
 };
 
 const script = {};
+
+script .construct = function construct ( order ) {
+
+return new this [ $ .setting ] ( ... order );
+
+};
 
 script .get = function get ( order ) {
 
@@ -94,8 +100,9 @@ value: script [ action ]
 
 const Director = {
 
+construct: ( scenario, order ) => scenario ( $ .construct, ... order ),
 get: ( scenario, direction ) => scenario ( $ .get, direction ),
-set: ( scenario, ... order ) => scenario ( $ .set, ... order )
+set: ( scenario, direction, details ) => scenario ( $ .set, direction, details )
 
 };
 
