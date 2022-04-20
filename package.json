@@ -1,0 +1,19 @@
+{
+  "name": "@blindoutofmind/scenarist",
+  "version": "1.0.0",
+  "description": "JavaScript Function to Turn Object into Subject",
+  "main": "index.js",
+  "scripts": {
+    "test": "./test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blindoutofmind/scenarist.git"
+  },
+  "author": "Faddy Michel Samaan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blindoutofmind/scenarist/issues"
+  },
+  "homepage": "https://github.com/blindoutofmind/scenarist#readme"
+}
