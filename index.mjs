@@ -6,7 +6,7 @@ return new this ( setting );
 
 const $ = {};
 
-for ( const signature of [ 'setting', 'scenario', 'construct', 'defineProperty', 'get', 'set' ] )
+for ( const signature of [ 'setting', 'scenario', 'construct', 'defineProperty', 'deleteProperty', 'get', 'set' ] )
 $ [ signature ] = Symbol ( signature );
 
 const Story = function Story ( setting ) {
@@ -64,6 +64,12 @@ return story [ $ .scenario ];
 
 };
 
+script .deleteProperty = function deleteProperty ( [ direction ] ) {
+
+return delete this [ $ .setting ] [ direction ];
+
+};
+
 script .get = function get ( order ) {
 
 const story = this;
@@ -112,6 +118,7 @@ const Director = {
 
 construct: ( scenario, order ) => scenario ( $ .construct, ... order ),
 defineProperty: ( scenario, direction, details ) => scenario ( $ .defineProperty, direction, details ),
+deleteProperty: ( scenario, direction ) => scenario ( $ .deleteProperty, direction ),
 get: ( scenario, direction ) => scenario ( $ .get, direction ),
 set: ( scenario, direction, details ) => scenario ( $ .set, direction, details )
 
